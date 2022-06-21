@@ -1,5 +1,7 @@
 const express=require('express')
+const { doSignup, handleLogin } = require('../Controllers/AuthControleer')
 const router=express.Router()
-const AuthController=require('../Controllers/AuthControleer')
-router.post('/signup',AuthController.doSignup)
+
+router.post('/signup',doSignup)
+router.post('/login',handleLogin)
 module.exports=router

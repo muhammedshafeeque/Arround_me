@@ -38,5 +38,13 @@ module.exports={
             
             
         })
+    },
+    verifyPassword:({password,UserPassword})=>{
+        return new Promise(async(resolve,reject)=>{
+        bcrypt.compare(password,UserPassword).then((status)=>{
+            status?resolve({login:true}):resolve({login:false})
+        })
+       
+        })
     }
 }

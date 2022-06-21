@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import * as EmailValidator from 'email-validator';
+import axios from '../../../Api/Axios'
 function Signup() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [fname, setFName] = useState();
@@ -33,7 +34,24 @@ const handleSignup=async()=>{
     })
   }else{
     if(EmailValidator.validate(email)){
-
+      let {data}= await axios.post('/api/auth/signup',{fname,lname,Password,email})
+      if(data.error){
+        toast({
+          title: 'Error',
+          description: data.error,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        })
+      }else{
+        toast({
+          title: 'Success',
+          description:data.message,
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        })
+      }
     }else{
       toast({
         title: 'Error',
@@ -84,6 +102,7 @@ const handleSignup=async()=>{
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 width="90%"
+                type={"password"}
               />
               <Button onClick={handleSignup} mt={5} width={"90%"} colorScheme="blue">
                 Signup
