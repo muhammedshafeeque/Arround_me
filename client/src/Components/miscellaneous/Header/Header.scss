@@ -1,0 +1,14 @@
+@import '../../../Common/Color.scss';
+.header{
+    width: 100%;
+    
+    background-color: $primary_colour;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+    color: $background_color;
+    position: fixed;
+    top: 0;
+    
+}
