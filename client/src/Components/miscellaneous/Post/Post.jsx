@@ -4,7 +4,10 @@ import "./post.scss";
 import {GrLike} from 'react-icons/gr'
 import {BiCommentDetail} from 'react-icons/bi'
 import {FiSend} from 'react-icons/fi'
+import { useState } from "react";
+import CommentBox from "./CommentBox";
 function Post() {
+    const [commentBox,setCommentBox]=useState(false)
   return (
     <Box className="post">
       <Box className="post_header">
@@ -41,9 +44,10 @@ function Post() {
       <Box className="post_footer">
         <Box className="footer_icons">
             <span> <h2>0</h2> <GrLike  fontSize={"22px"} /> </span>
-            <span>  <h2>0</h2> <BiCommentDetail fontSize={"22px"}/></span>
+            <span onClick={()=>{setCommentBox(!commentBox)}}>  <h2>0</h2> <BiCommentDetail fontSize={"22px"}/></span>
             <span> <h2>0</h2><FiSend fontSize={"22px"}/></span>
         </Box>
+        {commentBox&&<CommentBox/>}
       </Box>
     </Box>
   );

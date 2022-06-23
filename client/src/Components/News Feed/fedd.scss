@@ -1,5 +1,24 @@
 @import '../../Common/Color.scss';
 .news_feed{
-    padding-top: 2.4rem;
+    padding-top: 2.8rem;
     width: 100%;
+    .write_post{
+        width: 100%;
+        background-color:$background_color;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .input_div{
+            width: 85%;
+            border: solid 1px $secondory_background_color;
+            height: 2.5rem;
+            margin-left: 10px;
+            border-radius: 13px;
+            padding: 8px;
+            color: $secondory_background_color;
+            font-weight: bold;
+        }
+    }
 }

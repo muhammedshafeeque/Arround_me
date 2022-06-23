@@ -43,3 +43,29 @@
         }
     }
 }
+.comment_input{
+    width: 95%;
+    min-height: 2rem;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  
+    border: solid 1px #cfcfcf ;
+  
+        
+}
+.comment{
+    margin-top: 10px;
+   background-color: $secondory_background_color; 
+   border-radius: 15px;
+   padding: 10px;
+   max-width: 90%;
+   .comment_header{
+    margin-left: 20px;
+    font-weight: bold;
+   }
+   .comment_body{
+    margin-top: 10px;
+    margin-left: 20px;
+   }
+}
