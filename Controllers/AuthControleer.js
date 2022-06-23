@@ -7,8 +7,8 @@ const { checkEmailExist } = require("../Services/EmailService");
 const db = require("../Config/Connection");
 const collection = require("../Config/Collection");
 const { welcomeEmail } = require("../Email/AuthEmails");
-const { otpGenerator } = require("../Services/commonService");
-const { otpEmail } = require("../Email/commonEmail");
+
+const { ObjectId } = require("mongodb");
 module.exports = {
   doSignup: async (req, res) => {
     let { fname, lname, Password, email } = req.body;
@@ -26,15 +26,10 @@ module.exports = {
             lname,
             password: await encriptPassword(Password),
             email,
-            status: "unverified",
           };
-          db.get().collection(collection.USER_COLLECTION).insertOne(user);
+         await db.get().collection(collection.USER_COLLECTION).insertOne(user);
           welcomeEmail({ email, user });
-          otpEmail({
-            email,
-            subject: "Activate  Youre Account",
-            otp: otpGenerator(),
-          });
+         await db.get().collection(collection.USER_DATA_COLLECTION).insertOne({fname,lname,email,userId:ObjectId(user._id),status:"inactive"})
           res.send({
             message: "user Created Successfully",
             user: { fname, lname, email },

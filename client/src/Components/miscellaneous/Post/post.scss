@@ -1,0 +1,45 @@
+@import '../../../Common/Color.scss';
+.post{
+    width: 100%;
+    background-color: $background_color;
+    
+    border-radius: 5px;
+    margin-top: 5px;
+    &_header{
+        padding: 10px;
+        .sender{
+            font-weight:bold;
+            display:flex;
+            align-items: center;
+        }
+    }
+    &_body{
+        width: 100%;
+        border-top: solid 1px $secondory_background_color;
+        border-bottom: solid 1px $secondory_background_color;
+    }
+    &_footer{
+        width: 100%;
+        padding: 10px;
+        .footer_icons{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            span{
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                h2{
+                    margin-top: 7px;
+                    margin-right: 10px;
+
+                }
+                p{
+                    margin-top: 7px;
+                    margin-left: 10px; 
+                }
+            }
+        }
+    }
+}

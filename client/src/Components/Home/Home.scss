@@ -1,0 +1,36 @@
+@import '../../Common/Color.scss';
+.otp{
+    margin-top: 5rem;
+    padding: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    .text_heder{
+        text-align: center;
+        font-size: 30px;
+        font-weight: bolder;
+        color: $primary_colour;
+       
+    }
+    // .otp_area{
+    //     margin-top: 10px;
+   
+       
+    // }
+}
+.home_body{
+    margin-top: 4rem;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+
+    padding: 0;
+    .center_part{
+        background-color: $secondory_background_color;
+      
+        .center_menu{
+            width: 100%;
+        }
+    }
+}

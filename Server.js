@@ -4,7 +4,9 @@ const dotenv=require('dotenv')
 dotenv.config()
 const db =require('./Config/Connection')
 const AuthRouter=require('./Routes/AuthRouter')
+const UserRouter=require('./Routes/userRouter')
 const cors=require('cors')
+const { verifyUser } = require('./Services/AuthService')
 
 db.connect((err)=>{
     if(err) console.log('connection Error'+err)
@@ -12,7 +14,8 @@ db.connect((err)=>{
    })
 app.use(cors())  
 app.use(express.json())
-app.use('/api/auth',AuthRouter)   
+app.use('/api/auth',AuthRouter)
+app.use('/api/user/',verifyUser,UserRouter)
 let Server=app.listen(process.env.PORT,()=>{
     console.log('Server Started Successfully') 
 })

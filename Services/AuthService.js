@@ -46,5 +46,41 @@ module.exports={
         })
        
         })
+    },
+    verifyUser:async(req,res,next)=>{
+        let token;
+        if(
+            req.headers.authorization &&
+            req.headers.authorization.startsWith("Bearer")
+          ){
+            
+              try {
+                  token=req.headers.authorization.split(" ")[1]
+              
+                  const decoded=jwt.verify(token,process.env.JWT_TOCKEN_SECRET)
+                  
+                  let user=await db.get().collection(Collection.USER_COLLECTION).findOne({_id:ObjectId(decoded.id)}
+                  )
+                 
+                  if(!user){
+                    
+                      res.send({error:"Authentication faild Please Login Again  "})
+                  }else if(user.tokens.indexOf(token)>-1){
+                    
+                    req.user=user
+                    req.user.token=token
+                    next()
+                  }else{
+                    
+                    res.send({error:"Authentication faild Please Login Again  "}) 
+                  }
+              } catch (error) {
+                  
+                res.send({error:"Authentication faild Please Login Again  "})
+              }
+          }else{
+            res.send({error:"Authentication faild Please Login Again  "})
+          }
+    
     }
 }

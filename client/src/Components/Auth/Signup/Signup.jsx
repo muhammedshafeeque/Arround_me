@@ -16,6 +16,8 @@ import {
 import { useState } from "react";
 import * as EmailValidator from 'email-validator';
 import axios from '../../../Api/Axios'
+import { useNavigate } from "react-router-dom";
+import { Store } from "../../../Context/Store";
 function Signup() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [fname, setFName] = useState();
@@ -23,6 +25,8 @@ function Signup() {
   const [Password, setPassword] = useState();
   const [email, setEmail] = useState();
   const toast=useToast()
+  const navigate=useNavigate()
+  const {setUser}=Store()
 const handleSignup=async()=>{
   if(!fname||!lname||!Password||!email){
     toast({
@@ -44,6 +48,9 @@ const handleSignup=async()=>{
           isClosable: true,
         })
       }else{
+        setUser(data)
+        localStorage.setItem('token',JSON.stringify(data.token))
+        navigate('/home')
         toast({
           title: 'Success',
           description:data.message,
@@ -51,6 +58,7 @@ const handleSignup=async()=>{
           duration: 5000,
           isClosable: true,
         })
+
       }
     }else{
       toast({
